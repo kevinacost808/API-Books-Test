@@ -3,12 +3,25 @@
  */
 package api.books.test;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    
+    @Test
+    public void getRickAndMorty(){
+        given()
+            .baseUri("https://rickandmortyapi.com/api")
+        .when()
+            .get("/character/1")
+        .then()
+            .statusCode(200)
+            .body("name", equalTo("Rick Sanchez"))
+            .body("status", equalTo("Alive"))
+            .body("species", equalTo("Human"))
+            .body("gender", equalTo("Male"));
     }
+
 }

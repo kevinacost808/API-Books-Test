@@ -51,14 +51,8 @@ java {
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'api.books.test.App'
-}
-
 tasks.named('test') {
-    useTestNG(){
-        suite 'src/test/resources/suiteTestNG.xml'
+    useTestNG() {
         jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
     };
 }
