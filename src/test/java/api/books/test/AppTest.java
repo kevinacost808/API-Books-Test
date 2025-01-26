@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 class AppTest {
-    
+
     @Test
     public void getRickAndMorty(){
         given()
@@ -21,7 +21,9 @@ class AppTest {
             .body("name", equalTo("Rick Sanchez"))
             .body("status", equalTo("Alive"))
             .body("species", equalTo("Human"))
-            .body("gender", equalTo("Male"));
+            .body("gender", equalTo("Male"))
+        .log().all();
+        
     }
 
 }
