@@ -15,15 +15,34 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation libs.junit.jupiter
+// Define the version of Allure you want to use via the allureVersion property
+def allureVersion = "2.24.0"
+// Define the version of AspectJ
+def aspectJVersion = "1.9.20.1"
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // This dependency is used by the application.
-    implementation libs.guava
+// Define configuration for AspectJ agent
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
 }
+
+dependencies {
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+    testImplementation 'io.rest-assured:json-path:5.5.0'
+    testImplementation 'io.rest-assured:xml-path:5.5.0'
+    testImplementation 'io.rest-assured:json-schema-validator:5.5.0'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation 'org.testng:testng:7.10.2'
+    //ALLURE REPORTS
+    // Import allure-bom to ensure correct versions of all the dependencies are used
+    testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
+    // Add necessary Allure dependencies to dependencies section
+    testImplementation "io.qameta.allure:allure-testng"
+    // Add aspectjweaver dependency
+    agent "org.aspectj:aspectjweaver:$aspectJVersion"
+}    
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -38,6 +57,8 @@ application {
 }
 
 tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+    useTestNG(){
+        suite 'src/test/resources/suiteTestNG.xml'
+        jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
+    };
 }
