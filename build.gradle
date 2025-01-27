@@ -53,6 +53,7 @@ java {
 
 tasks.named('test') {
     useTestNG() {
+        suites 'src/test/resources/suiteCase.xml'
         jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
     };
 }

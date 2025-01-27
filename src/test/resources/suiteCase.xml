@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--Creacion de xml para correr los grupos desde la terminal con "gradle test"-->
+<suite name="Suite API Books">
+    <test name="PruebasAPIBooks">
+       <!-- <groups>
+            <run>
+               Incluye solo el grupo 'API books' 
+                <include name="API Books"/>
+            </run>
+        </groups> -->
+        <classes>
+            <!--Lista de clases de prueba a considerar. En este caso, solo TokenAuth -->
+            <class name="api.books.test.AppTest"/>
+        </classes>
+    </test>
+</suite>
