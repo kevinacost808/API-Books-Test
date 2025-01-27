@@ -9,7 +9,6 @@
             </run>
         </groups> -->
         <classes>
-            <!--Lista de clases de prueba a considerar. En este caso, solo TokenAuth -->
             <class name="api.books.test.AppTest"/>
         </classes>
     </test>
