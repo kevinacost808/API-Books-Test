@@ -3,27 +3,41 @@
  */
 package api.books.test;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.Random;
+
 class AppTest {
 
+    private String token;
+
+    @BeforeClass
     @Test
-    public void getRickAndMorty(){
-        given()
-            .baseUri("https://rickandmortyapi.com/api")
-        .when()
-            .get("/character/1")
-        .then()
-            .statusCode(200)
-            .body("name", equalTo("Rick Sanchez"))
-            .body("status", equalTo("Alive"))
-            .body("species", equalTo("Human"))
-            .body("gender", equalTo("Male"))
-        .log().all();
-        
+    public void setup(){
+        String emailRandom = generateRandomEmail();
+        RestAssured.baseURI = "https://simple-books-api.glitch.me";
+        Response response = given()
+                                .contentType("application/json")
+                                .body("{\"clientName\": \"Kevin\", \"clientEmail\": \"" + emailRandom + "\"}")
+                                .post("/api-clients/")
+                            .then()
+                                .statusCode(201)
+                                .extract()
+                                .response();
+        token = response.jsonPath().getString("accessToken");                        
+    }
+
+    public String generateRandomEmail(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(100000);
+        return "user" + randomNumber + "@example.com";
     }
 
 }
