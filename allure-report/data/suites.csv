@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","4935","getRickAndMorty","Default Suite","Mon Jan 27 11:46:36 PET 2025","passed","Mon Jan 27 11:46:41 PET 2025","api.books.test.AppTest","TestNGTest-96990c61-74dc-4139-b822-f2ef5dadacd9","api.books.test.AppTest","getRickAndMorty"
+"","8143","getRickAndMorty","Suite API Books","Mon Jan 27 11:56:53 PET 2025","passed","Mon Jan 27 11:57:01 PET 2025","api.books.test.AppTest","PruebasAPIBooks","api.books.test.AppTest","getRickAndMorty"
