@@ -47,6 +47,17 @@ class AppTest {
                 "schemas/body-schemas.json"));
     }
 
+    @Test
+    public void validateStatusCode200Books(){
+        given()
+            .header("Content-Type","application/json")
+        .when()
+            .get("/books")
+        .then()
+            .assertThat()
+            .statusCode(200);
+    }
+
     public String generateRandomEmail(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000);
