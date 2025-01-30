@@ -1,1 +1,1 @@
-[{"uid":"67538a987b94765b","name":"getRickAndMorty","time":{"start":1737997013317,"stop":1737997021460,"duration":8143},"status":"passed","severity":"normal"}]
+[{"uid":"206bcd6981eede40","name":"getRickAndMorty","time":{"start":1737997013317,"stop":1737997021460,"duration":8143},"status":"passed","severity":"normal"},{"uid":"c6b0346bbb0267b0","name":"setup","time":{"start":1738171680985,"stop":1738171681742,"duration":757},"status":"passed","severity":"normal"}]

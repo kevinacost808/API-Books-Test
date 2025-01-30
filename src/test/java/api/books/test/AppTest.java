@@ -7,10 +7,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 
 import java.util.Random;
 
@@ -32,6 +32,19 @@ class AppTest {
                                 .extract()
                                 .response();
         token = response.jsonPath().getString("accessToken");                        
+    }
+
+    @Test
+    public void validateBooksSchemasTheBooks(){
+        given()
+            .header("Content-Type","application/json")
+        .when()
+            .get("/books")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(
+                "schemas/body-schemas.json"));
     }
 
     public String generateRandomEmail(){
