@@ -58,6 +58,18 @@ class AppTest {
             .statusCode(200);
     }
 
+    @Test
+    public void validateStatusCode404Books(){
+        int id = 999;
+        given()
+            .header("Content-Type","application/json")
+        .when()
+            .get("/books/" + id)
+        .then()
+            .assertThat()
+            .statusCode(404);
+    }
+
     public String generateRandomEmail(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000);
