@@ -3,6 +3,7 @@
  */
 
 
+import org.checkerframework.checker.units.qual.t;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -85,6 +86,23 @@ class AppTest {
         .then()
             .assertThat()
             .statusCode(401)
+            .log().all();                                                   
+    }
+
+    @Test
+    public void validarStatusCode201CuandoElTokenEsValidoOrders(){
+
+        Orders ordersBody = new Orders(1, "Kevin");
+
+        given()
+            .header("Content-Type","application/json")
+            .header("Authorization","Bearer "+token)
+            .body(ordersBody)
+        .when()
+            .post("/orders")
+        .then()
+            .assertThat()
+            .statusCode(201)
             .log().all();                                                   
     }
 
