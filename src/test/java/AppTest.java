@@ -8,8 +8,10 @@ import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import utils.Orders;
+import utils.User;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Random;
 
@@ -106,7 +108,16 @@ class AppTest {
 
     @Test
     public void validarObtenerTokenSinEmail(){
-        
+        User userBody = new User("Kevin", "");
+        given()
+            .header("Content-Type", "application/json")
+            .body(userBody)
+        .when()
+            .post("/api-clients")
+        .then()
+            .assertThat()
+            .statusCode(400)
+            .body("error", equalTo("Invalid or missing client email."));
     }
 
     @Test
