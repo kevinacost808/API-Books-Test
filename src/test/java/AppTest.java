@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
+import utils.Orders;
 
 import static io.restassured.RestAssured.*;
 
@@ -72,10 +73,13 @@ class AppTest {
 
     @Test
     public void validarStatusCode401CuandoElTokenEsInvalidoOrders(){
+
+        Orders ordersBody = new Orders(1, "Kevin");
+
         given()
             .header("Content-Type","application/json")
             .header("Authorization","Bearer TOKEN_INVALIDO")
-            .body(DEFAULT_AUTH)
+            .body(ordersBody)
         .when()
             .post("/orders")
         .then()
