@@ -30,7 +30,8 @@ class AppTest {
                                 .statusCode(201)
                                 .extract()
                                 .response();
-        token = response.jsonPath().getString("accessToken");                        
+        token = response.jsonPath().getString("accessToken");   
+        System.out.println(token);                     
     }
 
     @Test
@@ -84,6 +85,28 @@ class AppTest {
             .assertThat()
             .statusCode(401)
             .log().all();                                                   
+    }
+
+    @Test
+    public void validarStatusCode400CuandoElCuerpoEsInvalidoOrders(){
+
+        Orders ordersBody = new Orders(0, "");
+
+        given()
+            .header("Content-Type","application/json")
+            .header("Authorization","Bearer "+token)
+            .body(ordersBody)
+        .when()
+            .post("/orders")
+        .then()
+            .assertThat()
+            .statusCode(400)
+            .log().all();                                                   
+    }
+
+    @Test
+    public void validarObtenerTokenSinEmail(){
+        
     }
 
     @Test
