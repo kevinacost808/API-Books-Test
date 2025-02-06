@@ -137,6 +137,18 @@ class AppTest {
             .log().all();                                                   
     }
 
+    @Test
+    public void validarTiempoDeRespuesta(){
+        given()
+            .header("Content-Type","application/json")
+        .when()
+            .get("/books")
+        .then()
+            .assertThat()
+            .statusCode(200)
+            .time(lessThan(2900L));
+    }
+
     public String generateRandomEmail(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000);
