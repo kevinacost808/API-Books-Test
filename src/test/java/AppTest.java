@@ -149,7 +149,10 @@ class AppTest {
             .time(lessThan(2900L));
     }
 
-    
+    @Test
+    public void validarIdempotenciaDelete(){
+        
+    }gi
 
     public String generateRandomEmail(){
         Random random = new Random();
