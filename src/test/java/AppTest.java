@@ -152,7 +152,12 @@ class AppTest {
     @Test
     public void validarIdempotenciaDelete(){
         
-    }gi
+    }
+
+    @Test
+    public void validarIdempotenciaUpdate(){
+        
+    }
 
     public String generateRandomEmail(){
         Random random = new Random();
